@@ -1,0 +1,133 @@
+<mat-card class="card-full">
+
+  <div *ngIf="perfilUser$ | async as perfilUser;">
+
+    <mat-card class="example-card">
+
+      <div class="profile-full">
+        <img class="example-header-image" [src]=perfilUser.fotoPerfil>
+        <br>
+        <br>
+        <mat-card-title><span class="user-title">{{perfilUser.nome + " " +
+            perfilUser.sobrenome}}</span></mat-card-title>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+      <mat-card-content>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    <br>
+    <div class="atualize-info-card">
+      <div>
+        <mat-toolbar>
+          <span class="title">ATUALIZAR INFORMAÇÕES</span>
+          <span class="example-spacer"></span>
+          <mat-icon>settings</mat-icon>
+        </mat-toolbar>
+      </div>
+
+      <div *ngIf="perfilUser$ | async as perfilUser;else spinner_image">
+
+        <mat-vertical-stepper [linear]="false" #stepper [animationDuration]="'500'" class="stepper">
+
+          <mat-step [stepControl]="formPerfil">
+            <form [formGroup]="formPerfil">
+              <ng-template matStepLabel>Insira o seu Sobrenome</ng-template>
+              <mat-form-field>
+                <input matInput placeholder="Sobrenome" value="{{perfilUser.sobrenome}}" formControlName="sobrenome"
+                  required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Próximo</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="formPerfil">
+            <form [formGroup]="formPerfil">
+              <ng-template matStepLabel>Insira o seu melhor Email</ng-template>
+              <mat-form-field>
+                <input matInput type="email" value="{{perfilUser.email}}" placeholder="Email" formControlName="email"
+                  required>
+              </mat-form-field>
+              <div>
+
+                <button mat-button matStepperPrevious>Voltar</button>
+                <button mat-button matStepperNext>Próximo</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="formPerfil">
+            <form [formGroup]="formPerfil">
+              <ng-template matStepLabel>Insira a sua Cidade</ng-template>
+              <mat-form-field>
+                <input matInput placeholder="Cidade" [value]="perfilUser.cidade" formControlName="cidade" required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Voltar</button>
+                <button mat-button matStepperNext>Próximo</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="formPerfil">
+            <form [formGroup]="formPerfil">
+              <ng-template matStepLabel>Insira o seu Estado</ng-template>
+              <mat-form-field>
+                <input matInput placeholder="Estado" [value]="perfilUser.estado" formControlName="estado" required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Voltar</button>
+                <button mat-button matStepperNext>Próximo</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="formPerfil">
+            <form [formGroup]="formPerfil">
+              <ng-template matStepLabel>Deseja alterar a sua foto?</ng-template>
+              <br>
+              <div class="preview-image-content">
+                <img [src]="imgSRC" id="preview-image">
+              </div>
+              <br>
+
+              <label for="foto">Alterar Foto</label>
+              <input type="file" name="foto" id="foto" placeholder="Perfil" (change)="setPreviewImage($event)" required>
+              <div>
+                <button mat-button matStepperPrevious>Voltar</button>
+                <button mat-button matStepperNext>Próximo</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step style="color: green;">
+            <ng-template matStepLabel>Pronto!</ng-template>
+            <div>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button (click)="stepper.reset()">Reiniciar</button>
+              <button mat-stroked-button color="primary" (click)="save()">Finalizar</button>
+            </div>
+          </mat-step>
+
+        </mat-vertical-stepper>
+      </div>
+
+    </div>
+
+  </div>
+</mat-card>
+
+
+<ng-template #spinner_image>
+  <mat-spinner class="spinner-image"></mat-spinner>
+</ng-template>

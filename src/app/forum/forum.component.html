@@ -1,0 +1,114 @@
+<div class="title">
+  <span style="position: relative;left: 20px;font-family: 'Monaco', 'Monaco', monospace;"
+    matTooltip="O que será que seus colegas estão fazendo?">Publicações</span>
+  <mat-divider style="position: relative;top: 15px;"></mat-divider>
+</div>
+
+<br>
+<div *ngIf="forum$ | async as forum; else spinner">
+  <div *ngFor="let post of forum.posts;">
+
+    <br>
+    <br>
+    <mat-card class="post-card">
+
+      <mat-toolbar>
+
+        <img class="example-header-image" [src]=post.perfilUser.fotoPerfil>
+        &nbsp;
+        &nbsp;
+        <mat-card-subtitle class="autor-title">{{post.autor}}</mat-card-subtitle>
+
+        <span class="example-spacer"></span>
+        <mat-card-title
+          style="max-width: 230px;white-space:normal; display: block; word-wrap: break-word;line-height: 20px;">{{post.titulo}}</mat-card-title>
+        &nbsp;
+
+        <div *ngIf="verificarAutenticidade(post); else menu_over">
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item [mat-menu-trigger-for]="menu_delete">
+              <mat-icon>delete</mat-icon>
+              <span>Apagar</span>
+            </button>
+          </mat-menu>
+        </div>
+
+      </mat-toolbar>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content>
+        &nbsp;
+        <h3 style="position: relative;text-align: left;">{{post.mensagem}}</h3>
+        &nbsp;
+      </mat-card-content>
+
+      <img class="img" mat-card-image [src]="post.foto">
+
+      <br>
+      <mat-divider></mat-divider>
+      <mat-toolbar style="background-color: white;">
+
+        <button mat-icon-button [matBadge]="getCountComments(post)" matBadgeSize="medium" (click)="openDialog(post.id)"
+          matTooltip="Comentários" matTooltipPosition="right"><mat-icon>chat</mat-icon></button>
+
+        <span class="example-spacer"></span>
+        <button mat-icon-button color="accent" (click)="sendLike(post.id)"
+          matTooltip=" {{getCountLikes(post)}} Curtidas"
+          matTooltipPosition="above"><mat-icon>{{verifyLiked(post)}}</mat-icon></button>
+      </mat-toolbar>
+    </mat-card>
+
+
+    <ng-template #menu_over>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="visitUser(post.autor)">
+          <mat-icon>contact_page</mat-icon>
+          <span>Visitar Perfil</span>
+        </button>
+        <mat-divider></mat-divider>
+      </mat-menu>
+    </ng-template>
+
+
+    <mat-menu #menu_delete="matMenu">
+      <button mat-menu-item style="background-color:  #f5f4f4;position: relative;">
+        <span>Tem Certeza?</span>
+        <mat-icon style="color: darkorange;">warning</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item (click)="apagarPost(post.id)">
+        <span>Sim</span>
+        <mat-icon style="color: rgb(3, 71, 3)">check</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item>
+        <span>Não</span>
+        <mat-icon style="color: #7a1b0c;">close</mat-icon>
+      </button>
+    </mat-menu>
+
+
+  </div>
+</div>
+
+<ng-template #spinner>
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-template>

@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-toolbar>
+        <mat-icon>person</mat-icon>
+        <span>Criar Usuário</span>
+    </mat-toolbar>
+
+    <mat-card-content>
+        <form [formGroup]="form">
+            <br>
+
+            <mat-form-field appearance="fill" class="full-width" matTooltip="Este nome será visível a todos!"
+                matTooltipPosition="right">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width" matTooltip="Insira o seu melhor email"
+                matTooltipPosition="right">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" type="email" formControlName="email" required>
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width" matTooltip="Crie uma senha segura"
+                matTooltipPosition="right">
+                <mat-label>Crie uma senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <button mat-raised-button style="border: 1px black solid" (click)="submit()">Criar</button>
+            <br>
+            <br>
+            <h3>Já possui uma conta? <a href="/login" matTooltip="Já possui uma conta?">Entre aqui</a></h3>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,156 @@
+.example-header-image {
+  background-size: cover;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  top: 100px;
+  border-radius: 50%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.profile-full {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+}
+
+.user-title {
+  position: relative;
+  /*margin-right: 85%;*/
+  color: black;
+  text-transform: uppercase;
+  text-shadow: 1px 0px rgba(black, .4);
+  letter-spacing: .2em;
+  text-decoration: none;
+  transform-style: preserve-3d;
+  font-size: 13pt;
+  border: 2px black solid;
+  padding: 5px;
+  top: 100px;
+}
+
+.email-info {
+  position: relative;
+  bottom: 80px;
+  padding-top: 35px;
+  border-top: 8px #d0d0d0 solid;
+}
+
+.email-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.city-info {
+  position: relative;
+  bottom: 60px;
+}
+
+.city-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.estado-info {
+  position: relative;
+  bottom: 40px;
+}
+
+.estado-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.card-full {
+  max-width: 100%;
+  margin: auto;
+  background-color: transparent;
+  text-align: center;
+}
+
+
+.title {
+  position: relative;
+  top: 80px;
+  /*margin-right: 85%;*/
+  color: black;
+  font-size: 20pt;
+  left: 20px;
+  font-family: 'Monaco', 'Monaco', monospace;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 0px) {
+
+  .full-content-data {
+    position: relative;
+    color: black;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .atributos {
+    position: relative;
+    top: 270px;
+    color: black;
+    font-size: 16pt;
+  }
+
+  .email-info {
+    position: relative;
+    bottom: 80px;
+    padding-top: 35px;
+    border-top: 8px #d0d0d0 solid;
+  }
+
+  .email-info-icon {
+    position: relative;
+    top: 5px;
+    right: 10px;
+  }
+
+  .city-info {
+    position: relative;
+    bottom: 60px;
+  }
+
+  .city-info-icon {
+    position: relative;
+    top: 5px;
+    right: 10px;
+  }
+
+  .estado-info {
+    position: relative;
+    bottom: 40px;
+  }
+
+  .estado-info-icon {
+    position: relative;
+    top: 5px;
+    right: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  .example-header-image {
+    background-size: cover;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    top: 100px;
+    border-radius: 50%;
+  }
+}

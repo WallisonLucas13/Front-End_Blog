@@ -1,0 +1,183 @@
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.example-stepper {
+  margin-top: 8px;
+}
+
+.example-card {
+  background-color: transparent;
+  max-width: 100%;
+  text-align: center;
+  top: 250px;
+  max-height: 60%;
+}
+
+.example-header-image {
+  background-size: cover;
+  position: relative;
+  margin: auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
+
+.atributos {
+  position: relative;
+  left: 30%;
+  bottom: 150px;
+  color: gray;
+  font-size: 16pt;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.stepper {
+  background-color: #f8f4f4;
+}
+
+.card-full {
+  max-width: 100%;
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.title {
+  position: relative;
+  background-color: #f8f4f4;
+  /*margin-right: 85%;*/
+  color: black;
+  left: 15px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.user-title {
+  position: relative;
+  /*margin-right: 85%;*/
+  color: black;
+  text-transform: uppercase;
+  text-shadow: 1px 0px rgba(black, .4);
+  letter-spacing: .2em;
+  text-decoration: none;
+  transform-style: preserve-3d;
+  font-size: 13pt;
+  border: 2px black solid;
+  padding: 5px;
+}
+
+.email-info {
+  position: relative;
+  bottom: 80px;
+  padding-top: 35px;
+  border-top: 8px #3f51b5 solid;
+}
+
+.email-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.city-info {
+  position: relative;
+  bottom: 60px;
+}
+
+.city-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.estado-info {
+  position: relative;
+  bottom: 40px;
+}
+
+.estado-info-icon {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.mat-mdc-form-field+.mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.trade-foto-perfil-card {
+  position: relative;
+  max-width: 25%;
+  top: 50px;
+  left: 70px;
+  border-bottom: 5px #3f51b5 solid;
+}
+
+.profile-full {
+  position: relative;
+  bottom: 150px;
+}
+
+.atualize-info-card {
+  position: relative;
+  bottom: 0px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  padding: 10px 5px;
+  width: 150px;
+  background-color: #f8f4f4;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px black solid;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: auto;
+}
+
+label:hover {
+  background-color: lightgray;
+  border: 1px #3f51b5 solid;
+}
+
+#preview-image {
+  background-size: cover;
+  position: relative;
+  margin: auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.preview-image-content {
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.spinner {
+  margin: auto;
+  max-width: 60px;
+}
+
+.spinner-image {
+  margin: auto;
+  max-width: 60px;
+  position: relative;
+}

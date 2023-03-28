@@ -1,0 +1,244 @@
+<mat-card class="content-all">
+
+    <div *ngIf="post$ | async as post;else spinner">
+
+        <mat-toolbar class="header-toolbar">
+            <span>Comentários {{post.comentarios.length}}</span>
+            <span class="example-spacer"></span>
+            <mat-icon class="closeIcon" color="warn" (click)="closeComments()">close</mat-icon>
+        </mat-toolbar>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <mat-toolbar class="footer-toolbar">
+
+            <form [formGroup]="comentarioForm" class="form-comentar">
+
+                <div *ngIf="perfilUser$ | async as perfilUser">
+
+                    <img class="example-header-image" [src]=perfilUser.fotoPerfil>
+
+                    <textarea type="text" matInput placeholder="Adicione um comentário..." formControlName="mensagem"
+                        required></textarea>
+
+                    <button mat-icon-button (click)="comentar(post.id)" class="send-button"
+                        matTooltip="Comentar"><mat-icon>send</mat-icon></button>
+
+                </div>
+
+            </form>
+
+            <mat-divider></mat-divider>
+
+        </mat-toolbar>
+
+
+        <br>
+        <br>
+        <br>
+
+        <div *ngIf="post.comentarios.length > 0;else empty">
+            <div *ngFor="let comentario of post.comentarios" class="fadder-comment">
+
+                <div>
+                    <mat-card class="comentario-style">
+                        <mat-toolbar style="background-color: transparent; color: white;">
+
+                            <div style="align-items: center;justify-content: center;text-align: center;">
+                                <img class="example-header-image" [src]=comentario.perfilUser.fotoPerfil>
+                                <p style="position: relative; bottom: 10px;color: gray;font-size: 12px;">
+                                    {{comentario.autor}}</p>
+                            </div>
+                            &nbsp;
+                            &nbsp;
+                            <br>
+                            <div>
+                                <div class="body-comment-content">
+                                    <span class="body-comment">{{comentario.mensagem}}</span>
+                                </div>
+                                <br>
+
+                            </div>
+
+                            <span class="example-spacer"></span>
+
+                            <div *ngIf="verificarAutenticidade(comentario); else menu_over"
+                                style="position: relative;bottom: 10px;">
+
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item [mat-menu-trigger-for]="menu_delete">
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Apagar</span>
+                                    </button>
+                                </mat-menu>
+
+                                <mat-menu #menu_delete="matMenu">
+                                    <button mat-menu-item (click)="apagarComentario(comentario.id)">
+                                        <mat-icon>check</mat-icon>
+                                        <span>Sim</span>
+                                    </button>
+                                    <mat-divider></mat-divider>
+
+                                    <button mat-menu-item>
+                                        <mat-icon>close</mat-icon>
+                                        <span>Não</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                            <br>
+                            <br>
+
+                        </mat-toolbar>
+                        <br>
+
+                        <mat-card-actions style="position: relative; bottom: 10px;left: 20px;position: relative;">
+
+                            <mat-accordion style="background-color:  #282424;" hideToggle>
+                                <mat-expansion-panel style="background-color:  #282424;box-shadow: none;">
+
+                                    <br>
+                                    <mat-expansion-panel-header style="background-color:  #282424;box-shadow: none;">
+                                        <mat-panel-title style="background-color:  #282424;box-shadow: none;">
+                                            <button mat-button style="color: white;font-size: 10pt;">
+                                                Responder
+                                            </button>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+
+                                    <form [formGroup]="comentarioForm">
+                                        <textarea type="text" class="response-form" matInput
+                                            placeholder="Adicione um comentário..." formControlName="mensagem"
+                                            required></textarea>
+                                        <button mat-icon-button (click)="comentarInComentario(comentario.id)"
+                                            class="send-button-response"
+                                            matTooltip="Responder"><mat-icon>send</mat-icon></button>
+                                    </form>
+
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </mat-card-actions>
+
+                        <mat-accordion hideToggle>
+                            <mat-expansion-panel style="background-color:  #282424;"
+                                (opened)="getCommentsOfComment(comentario.id)">
+
+                                <mat-expansion-panel-header style="max-width: 150px;background-color:  #282424;">
+                                    <mat-panel-title style="color: #3ea7fe"><mat-icon
+                                            style="color: #3ea7fe">expand_more</mat-icon>{{comentario.comentarios.length}}
+                                        respostas</mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <br>
+                                <div *ngIf="commentsOfComment$ | async as comentarios; else spinner">
+                                    <div *ngFor="let resposta of comentarios">
+
+                                        <mat-card class="comentario-style" style="box-shadow: none;">
+
+                                            <mat-toolbar
+                                                style="background-color: transparent; color: white;box-shadow: none;">
+
+                                                <div
+                                                    style="align-items: center;justify-content: center;text-align: center;">
+                                                    <img class="example-header-image-response"
+                                                        [src]=resposta.perfilUser.fotoPerfil>
+                                                    <p
+                                                        style="position: relative; bottom: 10px;color: gray;font-size: 12px;">
+                                                        {{resposta.autor}}</p>
+                                                </div>
+                                                &nbsp;
+                                                &nbsp;
+                                                <br>
+                                                <div>
+                                                    <div class="body-response-content">
+                                                        <span class="body-comment-response">{{resposta.mensagem}}</span>
+                                                    </div>
+                                                </div>
+                                                <span class="example-spacer"></span>
+
+                                                <div *ngIf="verificarAutenticidade(resposta); else menu_over"
+                                                    style="position: relative;bottom: 10px;">
+
+                                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                        aria-label="Example icon-button with a menu">
+                                                        <mat-icon>more_vert</mat-icon>
+                                                    </button>
+
+                                                    <mat-menu #menu="matMenu">
+                                                        <button mat-menu-item [mat-menu-trigger-for]="menu_delete">
+                                                            <mat-icon>delete</mat-icon>
+                                                            <span>Apagar</span>
+                                                        </button>
+                                                    </mat-menu>
+
+                                                    <mat-menu #menu_delete="matMenu">
+                                                        <button mat-menu-item (click)="apagarComentario(resposta.id)">
+                                                            <mat-icon>check</mat-icon>
+                                                            <span>Sim</span>
+                                                        </button>
+                                                        <mat-divider></mat-divider>
+
+                                                        <button mat-menu-item>
+                                                            <mat-icon>close</mat-icon>
+                                                            <span>Não</span>
+                                                        </button>
+                                                    </mat-menu>
+                                                </div>
+                                                <br>
+
+                                            </mat-toolbar>
+
+                                        </mat-card>
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+                        <ng-template #menu_over>
+
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="visitUser(comentario.autor)">
+                                    <mat-icon>contact_page</mat-icon>
+                                    <span>Visitar Perfil</span>
+                                </button>
+                                <mat-divider></mat-divider>
+                            </mat-menu>
+                        </ng-template>
+
+
+                    </mat-card>
+                    <br>
+                </div>
+
+                <br>
+
+            </div>
+
+        </div>
+
+
+        <ng-template #empty>
+            <h3 style="text-align: center;">Seja Você o primeiro a comentar!</h3>
+        </ng-template>
+
+    </div>
+
+    <ng-template #spinner>
+        <mat-spinner class="spinner"></mat-spinner>
+    </ng-template>
+
+</mat-card>

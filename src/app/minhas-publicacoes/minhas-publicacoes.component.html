@@ -1,0 +1,100 @@
+<div class="title">
+  <span style="position: relative;left: 20px;">Minhas Publicações</span>
+  <mat-divider style="position: relative;top: 16px;"></mat-divider>
+</div>
+
+<br>
+<div *ngIf="posts$ | async as posts; else spinner">
+  <div *ngIf="posts.length > 0;else empty">
+    <div *ngFor="let post of posts">
+
+      <br>
+      <br>
+      <mat-card class="post-card">
+
+        <mat-toolbar>
+
+          <img class="example-header-image" [src]=post.perfilUser.fotoPerfil>
+          &nbsp;
+          &nbsp;
+          <mat-card-title>{{post.titulo}}</mat-card-title>
+          <span class="example-spacer"></span>
+
+          <mat-card-subtitle class="autor-title">{{post.autor}}</mat-card-subtitle>
+          &nbsp;
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item [mat-menu-trigger-for]="menu_delete">
+              <mat-icon>delete</mat-icon>
+              <span>Apagar</span>
+            </button>
+          </mat-menu>
+
+          <mat-menu #menu_delete="matMenu">
+            <button mat-menu-item style="background-color:  #f5f4f4;position: relative;">
+              <span>Tem Certeza?</span>
+              <mat-icon style="color: darkorange;">warning</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+
+            <button mat-menu-item (click)="apagarPost(post.id)">
+              <span>Sim</span>
+              <mat-icon style="color: rgb(3, 71, 3)">check</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+
+            <button mat-menu-item>
+              <span>Não</span>
+              <mat-icon style="color: #7a1b0c;">close</mat-icon>
+            </button>
+          </mat-menu>
+
+
+        </mat-toolbar>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+          &nbsp;
+          <h3 style="position: relative;text-align: left;">{{post.mensagem}}</h3>
+          &nbsp;
+        </mat-card-content>
+
+        <img class="img" mat-card-image [src]="post.foto">
+
+        <br>
+        <mat-divider></mat-divider>
+        <mat-toolbar style="background-color: white;">
+
+          <button mat-icon-button [matBadge]="getCountComments(post)"
+            (click)="openDialog(post.id)"><mat-icon>chat</mat-icon></button>
+          <span class="example-spacer"></span>
+          <button mat-icon-button color="accent" (click)="sendLike(post.id)"
+            matTooltip="{{getCountLikes(post)}} Curtidas"
+            matTooltipPosition="above"><mat-icon>{{verifyLiked(post)}}</mat-icon></button>
+        </mat-toolbar>
+      </mat-card>
+
+    </div>
+
+  </div>
+</div>
+
+<ng-template #empty>
+  <div style="text-align: center;position: relative;top: 150px;">
+    <h3 style="font-family: 'Monaco', 'Monaco', monospace;font-size: 16pt;">Você ainda não publicou nada!</h3>
+  </div>
+</ng-template>
+
+<ng-template #spinner>
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-template>

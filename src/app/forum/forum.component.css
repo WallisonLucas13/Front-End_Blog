@@ -1,0 +1,195 @@
+.full-width {
+    width: 100%;
+}
+
+mat-card {
+    width: 1000px;
+    text-align: center;
+}
+
+.min-width {
+    width: 100%;
+    min-height: 150px;
+}
+
+.custom-snack-error {
+    color: red !important;
+    background-color: red !important;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+::ng-deep .fail {
+    color: black !important;
+    background-color: red !important;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.post-card {
+    width: 25%;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    background-color: white;
+    top: 60px;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1100px) {
+    .post-card {
+        width: 60%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        background-color: white;
+        top: 60px;
+        margin: auto;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .post-card {
+        width: 90%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        background-color: white;
+        top: 60px;
+        margin: auto;
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+    .post-card {
+        width: 100%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        background-color: white;
+        top: 60px;
+        margin: auto;
+    }
+
+}
+
+@media only screen and (min-width: 1100px) {
+    .post-card {
+        width: 40%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        background-color: white;
+        top: 60px;
+        margin: auto;
+    }
+
+}
+
+.img {
+    width: 100%;
+    background-size: cover;
+
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.img:hover {
+    -moz-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.example-header-image {
+    background-size: cover;
+    background-color: #f5f4f4;
+    position: relative;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.title {
+    position: relative;
+    top: 80px;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: black;
+}
+
+.autor-title {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: black;
+}
+
+.example-container {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+}
+
+.tp-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+}
+
+.tp-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    width: 400px;
+}
+
+.spinner {
+    margin: auto;
+    max-width: 60px;
+    position: relative;
+    top: 140px;
+}
+
+.comentario-style {
+    background-color: #282424;
+    color: white;
+    position: relative;
+    top: 120px;
+}
+
+.content-chat:hover {
+    background-color: #bfcff7;
+}
+
+.example-header-image-chat {
+    background-size: cover;
+    background-color: #f5f4f4;
+    position: relative;
+    margin: auto;
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.lastMessageStyle {
+    position: relative;
+    left: 20px;
+    bottom: 5px;
+    font-size: 13pt;
+    font-family: "Times New Roman", Times, serif;
+    font-family: "Monaco", "Monaco", monospace;
+}

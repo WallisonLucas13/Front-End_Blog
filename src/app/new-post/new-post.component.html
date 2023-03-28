@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-toolbar>
+        <span class="title">Nova Publicação</span>
+        <span class="example-spacer"></span>
+        <mat-icon>add_card</mat-icon>
+    </mat-toolbar>
+
+    <br>
+    <form [formGroup]="formPost">
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Título</mat-label>
+            <input matInput placeholder="Título" formControlName="titulo" required>
+            <mat-icon matSuffix class="sufix-title">title</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Oque você está pensando {{username}}?</mat-label>
+            <textarea matInput placeholder="Desenvolva sua publicação" formControlName="mensagem"></textarea>
+            <mat-icon matSuffix class="sufix-forum">forum</mat-icon>
+        </mat-form-field>
+
+        <img [src]="imgSRC" id="preview-image">
+
+        <label for="foto">{{labelText}}</label>
+
+        <input #foto type="file" name="foto" id="foto" accept="image/png, image/jpeg"
+            (change)="setPreviewImage($event)">
+
+        <button mat-mini-fab color="warn" *ngIf="deleteIcon" class="button-delete" (click)="deleteImage()">
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <button mat-raised-button color="primary" (click)="salvarPost()"
+            style="position: relative;margin: auto;width: 100px;">Publicar</button>
+        <br>
+        <br>
+    </form>
+
+</mat-card>

@@ -1,0 +1,166 @@
+<div>
+  <mat-toolbar class="toolbar-full">
+    <div>
+      <span class="title">MATBOOK</span>
+    </div>
+
+    <div *ngIf="perfilUser$ | async as perfilUser" class="forumA">
+
+      <h3 [ngClass]="activedAbaStyleClassForum">
+        <a (click)="toForum()" matTooltip="Fórum">Fórum</a>
+      </h3>
+
+    </div>
+
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <h3 [ngClass]="activedAbaStyleClassMinhasPubli" class="myPubliA">
+      <a (click)="toMinhasPubli()">Minhas Publicações</a>
+    </h3>
+
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <div *ngIf="perfilUser$ | async as perfilUser" class="newPubliA">
+
+      <h3 [ngClass]="activedAbaStyleClassNewPubli" matTooltip="Crie suas próprias publicações">
+        <a (click)="toNewPubli()">Nova Publicação</a>
+      </h3>
+
+    </div>
+
+    <span class="example-spacer"></span>
+    <div>
+
+      <span class="example-spacer"></span>
+
+      <div [ngClass]="activedAbaStyleClassUser" matTooltip="Atualizar Informações" class="infoA">
+        <h3 *ngIf="perfilUser$ | async as perfilUser">
+          <a (click)="toUserDetails()">{{perfilUser.nome + " " + perfilUser.sobrenome}}</a>
+          &nbsp;
+          <img class="example-header-image" [src]=perfilUser.fotoPerfil>
+        </h3>
+      </div>
+    </div>
+
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <h3 class="exit-button" matTooltip="Sair">
+      <a (click)="exit()" style="position: relative;top: 8px;">Exit</a>
+      &nbsp;
+      <mat-icon style="position: relative; top: 15px;">logout</mat-icon>
+    </h3>
+
+    <mat-divider></mat-divider>
+
+    <button class="menu-container" [mat-menu-trigger-for]="menu_drawer">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu_drawer="matMenu" class="menu-drawer">
+
+      <div *ngIf="perfilUser$ | async as perfilUser">
+
+        <button mat-menu-item class="forum-drawer" (click)="toForum()">
+          <mat-icon style="color: darkcyan;">forum</mat-icon>
+          <span>Fórum</span>
+        </button>
+
+        <button mat-menu-item class="myPosts-drawer" (click)="toMinhasPubli()">
+          <mat-icon style="color: darkgoldenrod;">view_day</mat-icon>
+          <span>Minhas Publicações</span>
+        </button>
+
+        <div>
+
+          <button mat-menu-item class="newPubli-drawer" (click)="toNewPubli()">
+            <mat-icon style="color: darkblue;">add_card</mat-icon>
+            <span>Nova Publicação</span>
+          </button>
+
+        </div>
+
+        <button mat-menu-item [matMenuTriggerFor]="menu_info">
+          <mat-icon style="color: darkgreen;">info</mat-icon>
+          <span>Informações Pessoais</span>
+        </button>
+
+        <button mat-menu-item (click)="exit()">
+          <mat-icon style="color: #7a1b0c;">logout</mat-icon>
+          <span style="color: #7a1b0c;">Sair</span>
+        </button>
+
+        <mat-menu #menu_info="matMenu" yPosition="below" xPosition="after">
+          <button mat-menu-item class="newPubli-drawer" (click)="visitUser(perfilUser.nome)">
+            <mat-icon>account_circle</mat-icon>
+            <span>Visualizar Perfil</span>
+          </button>
+
+          <button mat-menu-item class="newPubli-drawer" (click)="toUserDetails()">
+            <mat-icon>update</mat-icon>
+            <span>Atualizar Informações</span>
+          </button>
+
+        </mat-menu>
+
+      </div>
+
+    </mat-menu>
+
+  </mat-toolbar>
+
+</div>
+
+
+<mat-sidenav-container class="tp-container">
+
+  <mat-sidenav mode="side" opened position="start" class="side-bar-full-data">
+
+    <section class="tp-section">
+
+      <div class="title-Chat">
+        <span style="position: relative;left: 20px;font-family: 'Monaco', 'Monaco', monospace;"
+          matTooltipPosition="right">Dados</span>
+        <mat-divider style="position: relative;top: 15px;"></mat-divider>
+        <br>
+      </div>
+
+      <div class="perfil-data-style" matTooltip="Informações" matTooltipPosition="right">
+
+        <div class="preview-image-content" *ngIf="perfilUser$ | async as perfilUser">
+
+          <img id="preview-image" [src]=perfilUser.fotoPerfil>
+          <br>
+          <mat-card-title><span class="user-title">{{perfilUser.nome + " " +
+              perfilUser.sobrenome}}</span></mat-card-title>
+
+          <div class="atributos">
+            <span class="email-info"><mat-icon class="email-info-icon">email</mat-icon>{{perfilUser.email}}</span>
+            <br>
+            <br>
+            <span class="city-info"><mat-icon
+                class="city-info-icon">location_city</mat-icon>{{perfilUser.cidade}}</span>
+            <br>
+            <br>
+            <span class="estado-info"><mat-icon
+                class="estado-info-icon">location_on</mat-icon>{{perfilUser.estado}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+  <ng-template #spinner>
+    <mat-spinner class="spinner"></mat-spinner>
+  </ng-template>
+
+</mat-sidenav-container>

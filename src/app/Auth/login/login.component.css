@@ -1,0 +1,110 @@
+.full-width {
+    width: 100%;
+}
+
+mat-card {
+    max-width: 35%;
+    margin: 4em auto;
+    text-align: center;
+    top: 60px;
+    border: 3px black solid;
+}
+@media only screen and (min-width: 800px) {
+    mat-card {
+        max-width: 35%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    mat-card {
+        max-width: 45%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    mat-card {
+        max-width: 45%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    mat-card {
+        max-width: 70%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    mat-card {
+        max-width: 90%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    mat-card {
+        max-width: 90%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+
+@media only screen and (max-width: 310px) {
+    mat-card {
+        max-width: 95%;
+        margin: 4em auto;
+        text-align: center;
+        top: 60px;
+        border: 3px black solid;
+    }
+}
+.toolButton {
+    border: 1px black solid;
+    margin: auto;
+}
+
+.min-width {
+    width: 100%;
+    min-height: 150px;
+}
+
+.custom-snack-error {
+    color: red !important;
+    background-color: red !important;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+::ng-deep .fail {
+    color: black !important;
+    background-color: red !important;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}

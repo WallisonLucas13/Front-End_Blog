@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-toolbar class="tool">
+        <mat-icon>person</mat-icon>
+        <span>Login</span>
+    </mat-toolbar>
+
+    <mat-card-content>
+        <form [formGroup]="form">
+            <br>
+
+            <mat-form-field appearance="fill" class="full-width" matTooltip="Entre com seu nome"
+                matTooltipPosition="right">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width" matTooltip="Tenha cuidado! Este é um dado sensível"
+                matTooltipPosition="right">
+                <mat-label>Sua senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <br>
+            <button mat-raised-button class="toolButton" (click)="submit()">Entrar</button>
+            <br>
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+            <h3 style="color: black;">Não possui uma conta? <a style="color: blue;" href="/register"
+                    matTooltip="Clique aqui para criar sua conta">Crie aqui</a></h3>
+        </form>
+    </mat-card-content>
+</mat-card>

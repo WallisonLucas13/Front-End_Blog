@@ -1,0 +1,28 @@
+<div class="profile-full" *ngIf="perfilUser$ | async as perfilUser">
+
+    <div>
+        <span class="title">Informações</span>
+    </div>
+
+    <div class="full-content-data">
+
+        <img class="example-header-image" [src]=perfilUser.fotoPerfil>
+        <br>
+        <br>
+        <mat-card-title><span class="user-title">{{perfilUser.nome + " " +
+                perfilUser.sobrenome}}</span></mat-card-title>
+
+        <div class="atributos">
+
+            <span class="email-info"><mat-icon class="email-info-icon">email</mat-icon>{{perfilUser.email}}</span>
+            <br>
+            <span class="city-info"><mat-icon
+                    class="city-info-icon">location_city</mat-icon>{{perfilUser.cidade}}</span>
+            <br>
+            <span class="estado-info"><mat-icon
+                    class="estado-info-icon">location_on</mat-icon>{{perfilUser.estado}}</span>
+        </div>
+        <br>
+
+    </div>
+</div>
